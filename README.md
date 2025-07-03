@@ -1,2 +1,28 @@
 # Chain-Reaction
-This project is a multithreaded simulation in C that models a dynamic system of a chain reaction. It is powered by POSIX threads (pthreads) and semaphores for concurrency and synchronization
+
+
+PROJECT DESCRIPTION:
+1: The project presented is the minimal version and consists of a Master proccess, Atom proccess, Activator Proccess and a Feeder process.
+2: The file is compiled using the make untility that compile it.
+
+This project is a multithreaded simulation in C that models a dynamic system of a chain reaction. It is powered by POSIX threads (pthreads) and semaphores for concurrency and synchronization, enabling parallel operations like atom generation, energy reporting, and atom processing. The system's behavior includes atom splitting based on energy conditions, with a focus on synchronization and resource sharing among threads to simulate interactions between master, atom, activator and feeder processes..
+
+MASTER PROCESS:
+The masterProcess acts as the central coordinator for the simulation. It initiates the atom generation process, spawns various threads for reporting, activator process,feeder process and atom process, feeding new atoms into the system It controls the main loop of the simulation, ensuring that atom processing threads are created and managed appropriately, and synchronizes the termination of all threads and the entire simulation based on predefined conditions.
+
+ATOM PROCESS:
+The atomProcess is responsible for simulating the processing of individual atoms. It handles energy consumption for each atom process, decides whether an atom should split based on its size, and calculates the energy changes resulting from such splits. This function also manages the creation of new threads for further processing of split atoms, ensuring the recursive-like continuation of atom processing.
+
+ACTIVATOR PROCESS:
+The activatorprocess serves as a regulatory mechanism within the simulation, controlling the conditions under which atom processing can occur. It waits for a "permit" through semaphore mechanisms and, upon receiving it, allows the atom processing to proceed by signaling through another semaphore. This function ensures that atom processing happens at appropriate times, maintaining the simulation's order and stability.
+
+FEEDER PROCESS:
+The feederprocess is tasked with introducing new atoms into the simulation when conditions allow. It monitors the availability of space for new atoms and, once space is available, generates new atoms to be processed. This function plays a crucial role in maintaining the flow of atoms within the simulation, ensuring that the system continues to operate and evolve over time.
+
+
+
+
+
+
+
+
